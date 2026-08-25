@@ -12,6 +12,8 @@ Gaussian process, and combines the GP result with the BGS source-zone model.
 - `gp/`: baseline multinomial GP and grid, prior, and kernel sensitivities.
 - `hybrid_a/`: source-to-grid conversion and weighted combinations.
 - `hybrid_b/`: source-informed multinomial GP.
+- `validation/`: retrospective 2013–2022 temporal holdout and paired
+  year-block bootstrap.
 
 Generated inputs, posterior samples, figures, and tables are not stored in the
 repository. The original study used Python 3.12 and CmdStan 2.39.0.
@@ -68,6 +70,19 @@ python hybrid_b/scripts/03_combine_with_l5.py
 python hybrid_b/scripts/04_summarize_results.py
 python hybrid_b/scripts/05_plot_results.py
 ```
+
+The retrospective temporal holdout is run after the main workflow has created
+the catalogue, grid, source-to-grid, and uncertainty-weighting outputs:
+
+```bash
+python validation/run_temporal_holdout.py
+python validation/bootstrap_common_support_scores.py
+```
+
+It fits L5, the baseline GP, and the Hybrid B correction using only events
+before 2013, then scores all five spatial formulations on the 2013–2022 test
+catalogue. Results are reported both on the full grid and on the common
+source-positive support; exact zero-probability test events are not smoothed.
 
 The L4 comparison is run separately:
 
