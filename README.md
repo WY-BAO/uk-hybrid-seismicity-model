@@ -77,12 +77,16 @@ the catalogue, grid, source-to-grid, and uncertainty-weighting outputs:
 ```bash
 python validation/run_temporal_holdout.py
 python validation/bootstrap_common_support_scores.py
+python validation/build_section_7_2_outputs.py
 ```
 
 It fits L5, the baseline GP, and the Hybrid B correction using only events
 before 2013, then scores all five spatial formulations on the 2013–2022 test
 catalogue. Results are reported both on the full grid and on the common
 source-positive support; exact zero-probability test events are not smoothed.
+The final command keeps the descriptive pairwise model correlation separate
+from the temporal-test RMSE, observed-rate correlation, and national-total
+comparison used to assess predictive accuracy.
 
 The L4 comparison is run separately:
 
