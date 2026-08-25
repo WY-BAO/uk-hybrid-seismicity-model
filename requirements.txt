@@ -1,0 +1,7 @@
+cmdstanpy>=1.2
+matplotlib>=3.8
+numpy>=1.26
+pandas>=2.2
+pyproj>=3.6
+scipy>=1.12
+shapely>=2.0

@@ -1,0 +1,38 @@
+{
+  "experiment_name": "Hybrid B source-informed multinomial spatial GP",
+  "paths": {
+    "baseline_config": "gp/config/baseline_config.json",
+    "baseline_stan_model": "gp/stan/baseline_gp.stan",
+    "baseline_stan_data": "gp/input/stan_data.json",
+    "baseline_grid": "gp/input/grid_cells.csv",
+    "baseline_gp_posterior": "gp/output/posterior/gp_posterior_draws.npz",
+    "baseline_combined_posterior": "gp/output/posterior/baseline_posterior_draws.npz",
+    "source_grid": "hybrid_a/output/source_model_132_grid_mw2.csv",
+    "source_fraction_matrix": "hybrid_a/output/source_zone_to_grid_fraction_matrix.csv",
+    "source_zone_rates": "source_model/output/source_zone_activity_rates_mw2_extrapolated.csv",
+    "source_verification": "hybrid_a/output/source_to_grid_verification.json",
+    "equal_weight_hybrid_a": "hybrid_a/output/equal_weighting/equal_weighting_w0p5_cell_summary.csv",
+    "uncertainty_weighted_hybrid_a": "hybrid_a/output/uncertainty_weighting/hybrid_A_uncertainty_weighted_132_cell_summary.csv",
+    "baseline_cell_summary": "gp/output/tables/cell_posterior_summary.csv"
+  },
+  "source": {
+    "threshold_mw": 2.0,
+    "cell_rate_column": "source_activity_rate_mean",
+    "zone_mean_column": "mean_rate_per_year",
+    "expected_grid_sha256": "74e5fde6faf793868c5022642934ad98833eaea04378bef90fbe1fc50859acbf"
+  },
+  "validation": {
+    "probability_sum_tolerance": 1e-12,
+    "python_stan_probability_tolerance": 2e-7,
+    "source_reconstruction_tolerance": 1e-12,
+    "l5_sum_tolerance": 1e-10
+  },
+  "expected": {
+    "earthquakes": 1013,
+    "grid_cells": 132,
+    "hybrid_b_modelled_cells": 126,
+    "hybrid_b_excluded_cells": 6,
+    "hybrid_b_likelihood_earthquakes": 1005,
+    "hybrid_b_excluded_earthquakes": 8
+  }
+}

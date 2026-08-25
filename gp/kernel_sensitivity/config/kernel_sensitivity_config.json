@@ -1,0 +1,82 @@
+{
+  "analysis_name": "Multinomial GP kernel sensitivity",
+  "kernel_order": [
+    "exp_quad",
+    "matern52",
+    "matern32",
+    "exponential",
+    "rational_quadratic_q2",
+    "cauchy",
+    "wendland_c2"
+  ],
+  "kernels": {
+    "exp_quad": {
+      "id": 1,
+      "label": "Exponentiated Quadratic",
+      "short_label": "EQ",
+      "equation": "R(d) = exp[-d^2 / (2 rho^2)]"
+    },
+    "matern52": {
+      "id": 2,
+      "label": "Matern 5/2",
+      "short_label": "Matern 5/2",
+      "equation": "R(d) = (1 + sqrt(5)d/rho + 5d^2/(3rho^2)) exp[-sqrt(5)d/rho]"
+    },
+    "matern32": {
+      "id": 3,
+      "label": "Matern 3/2",
+      "short_label": "Matern 3/2",
+      "equation": "R(d) = (1 + sqrt(3)d/rho) exp[-sqrt(3)d/rho]"
+    },
+    "exponential": {
+      "id": 4,
+      "label": "Exponential",
+      "short_label": "Exponential",
+      "equation": "R(d) = exp[-d/rho]"
+    },
+    "rational_quadratic_q2": {
+      "id": 5,
+      "label": "Rational Quadratic (q = 2)",
+      "short_label": "RQ (q=2)",
+      "equation": "R(d) = [1 + d^2/(4rho^2)]^(-2)"
+    },
+    "cauchy": {
+      "id": 6,
+      "label": "Cauchy",
+      "short_label": "Cauchy",
+      "equation": "R(d) = [1 + (d/rho)^2]^(-1)"
+    },
+    "wendland_c2": {
+      "id": 7,
+      "label": "Wendland C2",
+      "short_label": "Wendland C2",
+      "equation": "R(d) = (1-d/rho)^4(1+4d/rho) for 0 <= d/rho < 1; otherwise 0"
+    }
+  },
+  "diagnostic_thresholds": {
+    "maximum_rhat": 1.01,
+    "minimum_bulk_ess": 400.0,
+    "minimum_tail_ess": 400.0,
+    "maximum_divergences": 0,
+    "maximum_treedepth_hits": 0
+  },
+  "eq_reproduction_thresholds": {
+    "maximum_absolute_alpha_median_difference": 0.1,
+    "maximum_absolute_rho_km_median_difference": 5.0,
+    "minimum_probability_mean_pearson": 0.999,
+    "maximum_probability_mean_rmse": 0.0005,
+    "minimum_activity_mean_pearson": 0.999,
+    "maximum_activity_mean_rmse_per_year": 0.01
+  },
+  "correlation_curve": {
+    "minimum_distance_km": 0,
+    "maximum_distance_km": 500,
+    "step_km": 1
+  },
+  "legacy_definition_audit": {
+    "main_legacy_stan": "../legacy_kernel_definitions/kernel_sensitivity_q1.stan",
+    "q2_legacy_correction_stan": "../legacy_kernel_definitions/rational_quadratic_q2_correction.stan",
+    "discrepancy": "The original comparison used Rational Quadratic q=1; the final analysis uses q=2.",
+    "legacy_numerical_results_reused": false
+  }
+}
